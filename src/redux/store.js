@@ -1,3 +1,4 @@
+import { loadCartFromLocalStorage } from '@/utils';
 import { configureStore } from '@reduxjs/toolkit';
 import { productsAPI } from './slice/apiSlice';
 import cartReducer from './slice/cartSlice';
@@ -7,6 +8,11 @@ const store = configureStore({
     [productsAPI.reducerPath]: productsAPI.reducer,
     modal: modalReducer,
     cart: cartReducer,
+  },
+  preloadedState: {
+    cart: {
+      items: loadCartFromLocalStorage(),
+    },
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(productsAPI.middleware),

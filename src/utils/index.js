@@ -1,8 +1,10 @@
 const loadCartFromLocalStorage = () => {
   try {
-    const cartItems = localStorage.getItem('cart');
+    let cartItems = localStorage.getItem('cart');
     if (cartItems === null) {
-      return undefined;
+      // Initialize cart in local storage with an empty array
+      localStorage.setItem('cart', JSON.stringify([]));
+      cartItems = '[]'; // Set cartItems to an empty array string
     }
     return JSON.parse(cartItems);
   } catch (err) {
@@ -20,4 +22,22 @@ const saveCartToLocalStorage = (cart) => {
   }
 };
 
-export { loadCartFromLocalStorage, saveCartToLocalStorage };
+// Calculate the shipping fee based on the subtotal
+const calculateSubtotalAndShipping = (cartItems) => {
+  const subtotal = cartItems.reduce((total, item) => {
+    return total + item.price * item.quantity;
+  }, 0);
+
+  const shippingFee = subtotal >= 1000 ? 5 : 10;
+
+  return {
+    subtotal: subtotal,
+    shippingFee: shippingFee,
+  };
+};
+
+export {
+  calculateSubtotalAndShipping,
+  loadCartFromLocalStorage,
+  saveCartToLocalStorage,
+};

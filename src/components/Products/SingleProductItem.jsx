@@ -1,3 +1,4 @@
+import { addToCart } from '@/redux/slice/cartSlice';
 import { openModal } from '@/redux/slice/modalSlice';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,10 +10,11 @@ const SingleProductItem = ({ product }) => {
   const { brand, price, title, images, id } = product || {};
   const dispatch = useDispatch();
 
-  const handleOpenModal = (e) => {
+  const handleAddToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
     dispatch(openModal('drawer'));
+    dispatch(addToCart(product));
   };
 
   return (
@@ -61,7 +63,7 @@ const SingleProductItem = ({ product }) => {
               </button>
               <button
                 type="button"
-                onClick={handleOpenModal}
+                onClick={handleAddToCart}
                 className="px-4 py-2 text-sm font-medium text-white bg-purple-600 rounded-md hover:bg-purple-700 focus:outline-none focus:ring focus:border-purple-300">
                 Add to Cart
               </button>
