@@ -1,3 +1,4 @@
+import ProductList from '@/components/Products/ProductList';
 import Head from 'next/head';
 
 export default function Home() {
@@ -11,11 +12,8 @@ export default function Home() {
           key="title"
         />
       </Head>
-      <div>
-        <h1>aa</h1>
-        <h1>aa</h1>
-        <h1>aa</h1>
-        <h1>aa</h1>
+      <div className="relative max-w-[1440px] px-10 m-auto py-8  min-h-screen">
+        <ProductList />
       </div>
     </>
   );

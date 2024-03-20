@@ -13,6 +13,18 @@
   line-height: calc(1em + 0.5rem);
   -webkit-font-smoothing: antialiased;
 }
+
+:root {
+  /* Your default theme */
+  --background: white;
+  --foreground: rgb(40, 23, 23);
+}
+
+[data-theme='dark'] {
+  --background: red;
+  --foreground: rgb(39, 26, 26);
+}
+
 input,
 button,
 textarea,
@@ -32,4 +44,15 @@ h6 {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.modal {
+  width: clamp(20%, 300px, 80%);
+  height: min(100%, 100vh);
+  margin-left: auto;
+  padding: 0 2rem;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

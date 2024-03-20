@@ -1,4 +1,3 @@
-import ReduxWrapper from '@/provider/ReduxWrapper';
 import { Nokora } from 'next/font/google';
 import Header from './Header/Header.jsx';
 
@@ -15,11 +14,9 @@ const Footer = () => {
 const Layout = ({ children }) => {
   return (
     <>
-      <ReduxWrapper>
-        <Header />
-        <main className={`${nokora.className}`}>{children}</main>
-        <Footer />
-      </ReduxWrapper>
+      <Header />
+      <main className={` ${nokora.className}`}>{children}</main>
+      <Footer />
     </>
   );
 };
