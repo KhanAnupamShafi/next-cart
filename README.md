@@ -4,13 +4,20 @@
 
 Next Cart is a web application developed using Next.js framework, Redux for state management, and Page Router for navigation. It allows users to browse products, add them to their cart, and proceed to checkout seamlessly, offering a smooth shopping experience.
 
+Technologies:
+• Next.js (for server-side rendering, client site generation, routing with page router)
+• Redux (for managing cart state)
+• React Toolkit (asynchronous data fetching for product list page)
+• Server-Side Rendering (asynchronous data fetching for product detail page)
+• Tailwind CSS (for rapid UI prototyping)
+
 ### [Live Preview](https://next-cart-self.vercel.app/)
 
 **Key Features:**
 
 1. **Cart:** Allows users to add items to their cart with persistent local storage, ensuring saved selections across sessions.
 2. **Redux Toolkit:** Utilizes Redux Toolkit for efficient state management, including data fetching for the product list and seamless integration with the application's components.
-3. **getServerProps** Implements data fetching in product detail pages using getServerProps, enabling efficient server-side rendering and enhancing the user experience.
+3. **Server render with getServerProps** Implements data fetching in product detail pages using getServerProps, enabling efficient server-side rendering and enhancing the user experience.
 4. **LivePreview** - Fully responsive
 5. **Search Filter** User can search for products
 
