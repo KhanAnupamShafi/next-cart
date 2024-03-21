@@ -8,7 +8,7 @@ export default function Home() {
         <title>GhorerBazar.com</title>
         <meta
           property="og:title"
-          content="Ghorer Bazar is a Popualar eCommerce site"
+          content="Discover a world of quality products at Ghorer Bazar"
           key="title"
         />
       </Head>
