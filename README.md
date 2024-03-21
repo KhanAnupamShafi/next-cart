@@ -4,7 +4,7 @@
 
 Next Cart is a web application developed using Next.js framework, Redux for state management, and Page Router for navigation. It allows users to browse products, add them to their cart, and proceed to checkout seamlessly, offering a smooth shopping experience.
 
-Technologies:
+_Technologies_:
 • Next.js (for server-side rendering, client site generation, routing with page router)
 • Redux (for managing cart state)
 • React Toolkit (asynchronous data fetching for product list page)
