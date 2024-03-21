@@ -24,8 +24,8 @@ const saveCartToLocalStorage = (cart) => {
 
 // Calculate the shipping fee based on the subtotal
 const calculateSubtotalAndShipping = (cartItems) => {
-  const subtotal = cartItems.reduce((total, item) => {
-    return total + item.price * item.quantity;
+  const subtotal = cartItems?.reduce((total, item) => {
+    return total + item?.price * item?.quantity;
   }, 0);
 
   const shippingFee = subtotal >= 1000 ? 5 : 10;
@@ -34,6 +34,15 @@ const calculateSubtotalAndShipping = (cartItems) => {
     subtotal: subtotal,
     shippingFee: shippingFee,
   };
+};
+
+// calculate total cart items
+export const calculateTotalItems = (cartItems) => {
+  const totalCount = cartItems?.reduce((total, item) => {
+    return total + item?.quantity;
+  }, 0);
+
+  return totalCount;
 };
 
 export {

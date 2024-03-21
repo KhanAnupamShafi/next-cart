@@ -16,7 +16,7 @@ const ProductList = () => {
   };
 
   const cartContent = isOpen ? (
-    <CartDrawer closeModal={handleCloseModal} />
+    <CartDrawer onCloseModal={handleCloseModal} />
   ) : null;
 
   const cart = useReactPortal(cartContent);

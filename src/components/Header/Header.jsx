@@ -1,8 +1,31 @@
+import { openModal } from '@/redux/slice/modalSlice';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Logo from '../../assets/logo.webp';
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const items = useSelector((state) => state.cart.items);
+  const handleClick = () => {
+    dispatch(openModal());
+  };
+  const [totalItems, setTotalItems] = useState(0);
+
+  useEffect(() => {
+    // Calculate the total items whenever the items state changes
+    const calculateTotalItems = () => {
+      let total = 0;
+      items.forEach((item) => {
+        total += item.quantity;
+      });
+      setTotalItems(total);
+    };
+
+    calculateTotalItems();
+  }, [items]);
+
   return (
     <header className="sticky top-0 w-full z-30">
       <nav className="bg-white border-gray-200 py-2.5 dark:bg-gray-900">
@@ -18,8 +41,10 @@ const Header = () => {
             />
           </Link>
           <div className="flex items-center lg:order-2">
-            <button className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800">
-              Your Cart
+            <button
+              onClick={handleClick}
+              className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800">
+              Your Cart ({totalItems})
             </button>
             <button
               type="button"

@@ -1,16 +1,22 @@
 import { calculateSubtotalAndShipping } from '@/utils';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CartItemList from '../Cart/CartItemList';
 
-const CartDrawer = ({ closeModal }) => {
+const CartDrawer = ({ onCloseModal }) => {
   const items = useSelector((state) => state.cart.items);
-
   const { subtotal, shippingFee } = calculateSubtotalAndShipping(items);
-
+  const dispatch = useDispatch();
   const handleClick = (e) => {
-    e.stopPropagation(); // Stop event propagation
-    closeModal();
+    e.stopPropagation();
+    onCloseModal();
   };
+  const handleClearCart = (e) => {
+    e.stopPropagation();
+    // clear cart after place order
+    dispatch(clearCart());
+    onCloseModal();
+  };
+
   return (
     <>
       <div
@@ -19,6 +25,14 @@ const CartDrawer = ({ closeModal }) => {
       <div className="modal fixed top-0 right-0  bg-white  px-1 sm:px-4 sm:py-5 py-2 mt-1 rounded-md text-white opacity-100 z-50">
         <div className="rounded-3xl">
           <div className="">
+            <div className="flex items-center justify-between px-6 py-3 bg-gray-100">
+              <h3 className="font-semibold text-gray-900">Shopping Cart</h3>
+              <button
+                onClick={handleClick}
+                className="  rounded-lg text-red-400 hover:text-red-500 transition-colors">
+                Close
+              </button>
+            </div>
             <div className="flow-root">
               <CartItemList />
             </div>
@@ -27,45 +41,25 @@ const CartDrawer = ({ closeModal }) => {
 
             {items.length > 0 && (
               <>
-                <div
-                  data-inspector="71:23"
-                  className="mt-0 space-y-3 border-t border-b py-8">
-                  <div
-                    data-inspector="72:25"
-                    className="flex items-center justify-between">
-                    <p data-inspector="73:25" className="text-gray-400">
-                      Subtotal
-                    </p>
-                    <p
-                      data-inspector="74:25"
-                      className="text-lg font-semibold text-gray-900">
+                <div className="mt-0 space-y-3 border-t border-b py-8">
+                  <div className="flex items-center justify-between">
+                    <p className="text-gray-400">Subtotal</p>
+                    <p className="text-lg font-semibold text-gray-900">
                       ${subtotal}.00
                     </p>
                   </div>
-                  <div
-                    data-inspector="76:25"
-                    className="flex items-center justify-between">
+                  <div className="flex items-center justify-between">
                     <p data-inspector="77:25" className="text-gray-400">
                       Shipping
                     </p>
-                    <p
-                      data-inspector="78:25"
-                      className="text-lg font-semibold text-gray-900">
+                    <p className="text-lg font-semibold text-gray-900">
                       ${shippingFee}.00
                     </p>
                   </div>
                 </div>
-                <div
-                  data-inspector="81:23"
-                  className="mt-6 flex items-center justify-between">
-                  <p
-                    data-inspector="82:23"
-                    className="text-sm font-medium text-gray-900">
-                    Total
-                  </p>
-                  <p
-                    data-inspector="83:23"
-                    className="text-2xl font-semibold text-gray-900">
+                <div className="mt-6 flex items-center justify-between">
+                  <p className="text-sm font-medium text-gray-900">Total</p>
+                  <p className="text-2xl font-semibold text-gray-900">
                     <span
                       data-inspector="83:74"
                       className="text-xs font-normal text-gray-400">
@@ -75,14 +69,13 @@ const CartDrawer = ({ closeModal }) => {
                   </p>
                 </div>
 
-                <div data-inspector="86:23" className="mt-6 text-center">
+                <div className="mt-6 text-center">
                   <button
-                    data-inspector="87:42"
+                    onClick={handleClearCart}
                     type="button"
                     className="group inline-flex w-full items-center justify-center rounded-md bg-purple-500 px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800">
                     Place Order
                     <svg
-                      data-inspector="89:62"
                       xmlns="http://www.w3.org/2000/svg"
                       className="group-hover:ml-8 ml-4 h-6 w-6 transition-all"
                       fill="none"

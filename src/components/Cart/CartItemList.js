@@ -4,7 +4,6 @@ import SingleCartItem from './SingleCartItem';
 
 const CartItemList = () => {
   const items = useSelector((state) => state.cart.items);
-  console.log(items);
   return (
     <ul className="mt-4">
       {items.length > 0 ? (

@@ -13,7 +13,7 @@ const SingleProductItem = ({ product }) => {
   const handleAddToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    dispatch(openModal('drawer'));
+    dispatch(openModal());
     dispatch(addToCart(product));
   };
 
